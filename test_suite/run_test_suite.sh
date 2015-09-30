@@ -6,7 +6,7 @@ rm -f Miniconda3-latest-Linux-x86_64.sh
 
 # Open MPi
 echo "Running Open MPI test"
-rm -f /vagrant/openmpi.out /vagrant/openmpi.err /vagrant/openmpi.ret
+rm -f /vagrant/openmpi.log
 cd $HOME/test_suite/openmpi
 conda install --yes --channel asmeurer --channel sed-pro-inria openmpi gcc
 bash run_test.sh 2>&1 | tee /vagrant/openmpi.log
