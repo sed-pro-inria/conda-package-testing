@@ -1,6 +1,6 @@
 #!/bin/bash
 
-HERE=$(realpath $(dirname $0))
+ROOT=$(realpath $(dirname $0))
 
 # Download miniconda
 cd test_suite
@@ -15,13 +15,24 @@ rm -f test_suite.tar.gz
 tar cvzf test_suite.tar.gz test_suite
 
 # Prepare result file.
-log=$HERE/results.txt
+log=$ROOT/results.txt
 rm -f $log
 
-# Run tests on ubuntu
-echo "Ubuntu trusty64" | tee -a $log
+# Run tests on Ubuntu Trusty
+echo "Ubuntu trusty" | tee -a $log
 echo "############################################" | tee -a $log
-cd machines/ubuntu/trusty64
+cd $ROOT/machines/ubuntu/trusty64
+vagrant destroy -f
+vagrant up
+vagrant destroy -f
+echo "openmpi" | tee -a $log
+echo "============================" | tee -a $log
+cat openmpi.log >> $log
+
+# Run tests on Fedora 21
+echo "Fedora 21" | tee -a $log
+echo "############################################" | tee -a $log
+cd $ROOT/machines/boxcutter/fedora21
 vagrant destroy -f
 vagrant up
 vagrant destroy -f
