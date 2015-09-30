@@ -18,24 +18,20 @@ tar cvzf test_suite.tar.gz test_suite
 log=$ROOT/results.txt
 rm -f $log
 
-# Run tests on Ubuntu Trusty
-echo "Ubuntu trusty" | tee -a $log
-echo "############################################" | tee -a $log
-cd $ROOT/machines/ubuntu/trusty64
-vagrant destroy -f
-vagrant up
-vagrant destroy -f
-echo "openmpi" | tee -a $log
-echo "============================" | tee -a $log
-cat openmpi.log >> $log
-
-# Run tests on Fedora 21
-echo "Fedora 21" | tee -a $log
-echo "############################################" | tee -a $log
-cd $ROOT/machines/boxcutter/fedora21
-vagrant destroy -f
-vagrant up
-vagrant destroy -f
-echo "openmpi" | tee -a $log
-echo "============================" | tee -a $log
-cat openmpi.log >> $log
+for machine_path in \
+    ubuntu/precise64 \
+    ubuntu/vivid64 \
+    boxcutter/fedora21
+do
+    echo $machine_path | tee -a $log
+    echo "############################################" | tee -a $log
+    cd $ROOT/machines/$machine_path
+    vagrant destroy -f
+    vagrant up
+    vagrant destroy -f
+    echo "openmpi" | tee -a $log
+    echo "============================" | tee -a $log
+    cat openmpi.log >> $log
+    echo | tee -a $log
+    echo | tee -a $log
+done
