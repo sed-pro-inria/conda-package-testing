@@ -5,6 +5,8 @@ Vagrant.configure(2) do |config|
 
   config.vm.box = "boxcutter/fedora21"
 
+  config.vm.synced_folder "../../../pkgs_cache", "/home/vagrant/pkgs_cache"
+
   config.vm.provision "file",
     source: "../../../test_suite.tar.gz",
     destination: "test_suite.tar.gz"

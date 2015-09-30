@@ -18,10 +18,16 @@ tar cvzf test_suite.tar.gz test_suite
 log=$ROOT/results.txt
 rm -f $log
 
-for machine_path in \
-    ubuntu/precise64 \
-    ubuntu/vivid64 \
+# Prepare cache directory
+mkdir -p $ROOT/pkgs_cache
+
+machine_paths="
+    ubuntu/precise64
+    ubuntu/vivid64
     boxcutter/fedora21
+"
+
+for machine_path in $machine_paths
 do
     echo $machine_path | tee -a $log
     echo "############################################" | tee -a $log
