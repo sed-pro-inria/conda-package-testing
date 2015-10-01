@@ -1,0 +1,23 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure(2) do |config|
+
+  config.vm.box = "joshbeard/scientific-6.6-64"
+
+  config.vm.synced_folder "../../../pkgs_cache", "/home/vagrant/pkgs_cache"
+
+  config.vm.provision "file",
+    source: "../../../test_suite.tar.gz",
+    destination: "test_suite.tar.gz"
+
+  config.vm.provision "shell",
+    privileged: false,
+    inline: <<-SHELL
+      sudo yum --assumeyes install glibc-devel.x86_64
+      tar xvzf test_suite.tar.gz
+      cd test_suite
+      bash run_test_suite.sh
+    SHELL
+
+end

@@ -6,7 +6,7 @@ ROOT=$(realpath $(dirname $0))
 cd test_suite
 if [ ! -f Miniconda3-latest-Linux-x86_64.sh ]
 then
-    wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
+    wget --no-check-certificate https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
 fi
 cd ..
 
@@ -25,6 +25,7 @@ machine_paths="
     ubuntu/precise64
     ubuntu/vivid64
     boxcutter/fedora21
+    joshbeard/scientific-6.6-64
 "
 
 for machine_path in $machine_paths
