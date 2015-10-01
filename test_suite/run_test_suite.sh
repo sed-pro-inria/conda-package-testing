@@ -1,3 +1,7 @@
+#!/bin/bash
+
+# This script is executed on guest machines.
+
 function cp_cache_archives
 {
     src=$1
@@ -27,8 +31,8 @@ rm -f Miniconda3-latest-Linux-x86_64.sh
 # Package cache.
 cp_cache_archives $SYNCED_PKGS_CACHE_DIR $CONDA_DIR/pkgs
 
-# Open MPi
-echo "Running Open MPI test"
+# openmpi
+echo "Running openmpi test"
 rm -f /vagrant/openmpi.log
 cd $HOME/test_suite/openmpi
 conda install --yes --channel asmeurer --channel sed-pro-inria openmpi gcc

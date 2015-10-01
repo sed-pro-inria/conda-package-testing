@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# This script is executed on the host machine.
+
 ROOT=$(realpath $(dirname $0))
 
 # Download miniconda
@@ -26,6 +28,7 @@ machine_paths="
     ubuntu/vivid64
     boxcutter/fedora21
     joshbeard/scientific-6.6-64
+    smak/archlinux
 "
 
 for machine_path in $machine_paths
