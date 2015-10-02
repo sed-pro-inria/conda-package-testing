@@ -31,13 +31,26 @@ rm -f Miniconda3-latest-Linux-x86_64.sh
 # Package cache.
 cp_cache_archives $SYNCED_PKGS_CACHE_DIR $CONDA_DIR/pkgs
 
-# openmpi
-echo "Running openmpi test"
-rm -f /vagrant/openmpi.log
-cd $HOME/test_suite/openmpi
-conda install --yes --channel asmeurer --channel sed-pro-inria openmpi gcc
-bash run_test.sh 2>&1 | tee /vagrant/openmpi.log
-echo $? >> /vagrant/openmpi.log
+# Install conda packages
+conda install --yes --channel sed-pro-inria \
+    gcc \
+    openmpi \
+    scalapack
+
+test_names="
+    openmpi
+    scalapack
+"
+
+# Run tests, writting results to log file.
+for test_name in $test_names
+do
+    echo "Running $test_name test"
+    rm -f /vagrant/$test_name.log
+    cd $HOME/test_suite/$test_name
+    bash run_test.sh 2>&1 | tee /vagrant/$test_name.log
+    echo $? >> /vagrant/$test_name.log
+done
 
 # Package cache.
 cp_cache_archives $CONDA_DIR/pkgs $SYNCED_PKGS_CACHE_DIR

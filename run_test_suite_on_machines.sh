@@ -31,6 +31,11 @@ machine_paths="
     smak/archlinux
 "
 
+test_names="
+    openmpi
+    scalapack
+"
+
 for machine_path in $machine_paths
 do
     echo $machine_path | tee -a $log
@@ -39,9 +44,12 @@ do
     vagrant destroy -f
     vagrant up
     vagrant destroy -f
-    echo "openmpi" | tee -a $log
-    echo "============================" | tee -a $log
-    cat openmpi.log >> $log
-    echo | tee -a $log
-    echo | tee -a $log
+    for test_name in $test_names
+    do
+        echo "$test_name" | tee -a $log
+        echo "============================" | tee -a $log
+        cat $test_name.log | tee -a $log
+        echo | tee -a $log
+        echo | tee -a $log
+    done
 done
