@@ -37,7 +37,8 @@ conda install --yes --channel sed-pro-inria \
     openmpi \
     scalapack \
     metis-gkrand \
-    parmetis
+    parmetis \
+    superlu_dist
 
 # This set CONDA_ENV_PATH
 source activate root
@@ -47,6 +48,7 @@ test_names="
     scalapack
     metis-gkrand
     parmetis
+    superlu_dist
 "
 
 # Run tests, writting results to log file.

@@ -36,6 +36,7 @@ test_names="
     scalapack
     metis-gkrand
     parmetis
+    superlu_dist
 "
 
 for machine_path in $machine_paths
