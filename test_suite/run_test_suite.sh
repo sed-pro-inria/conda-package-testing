@@ -35,11 +35,16 @@ cp_cache_archives $SYNCED_PKGS_CACHE_DIR $CONDA_DIR/pkgs
 conda install --yes --channel sed-pro-inria \
     gcc \
     openmpi \
-    scalapack
+    scalapack \
+    metis-gkrand
+
+# This set CONDA_ENV_PATH
+source activate root
 
 test_names="
     openmpi
     scalapack
+    metis-gkrand
 "
 
 # Run tests, writting results to log file.
