@@ -35,6 +35,7 @@ test_names="
     openmpi
     scalapack
     metis-gkrand
+    parmetis
 "
 
 for machine_path in $machine_paths
