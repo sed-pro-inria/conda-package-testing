@@ -37,6 +37,7 @@ test_names="
     metis-gkrand
     parmetis
     superlu_dist
+    mumps
 "
 
 for machine_path in $machine_paths
