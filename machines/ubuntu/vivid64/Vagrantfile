@@ -14,6 +14,7 @@ Vagrant.configure(2) do |config|
   config.vm.provision "shell",
     privileged: false,
     inline: <<-SHELL
+      sudo apt-get --yes install g++ gfortran
       tar xvzf test_suite.tar.gz
       cd test_suite
       bash run_test_suite.sh

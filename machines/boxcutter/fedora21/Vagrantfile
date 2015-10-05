@@ -14,7 +14,7 @@ Vagrant.configure(2) do |config|
   config.vm.provision "shell",
     privileged: false,
     inline: <<-SHELL
-      sudo yum --assumeyes install glibc-devel.x86_64
+      sudo yum --assumeyes install gcc-c++.x86_64 gcc-gfortran.x86_64 
       tar xvzf test_suite.tar.gz
       cd test_suite
       bash run_test_suite.sh

@@ -38,6 +38,7 @@ test_names="
     parmetis
     superlu_dist
     mumps
+    hdf5
 "
 
 for machine_path in $machine_paths

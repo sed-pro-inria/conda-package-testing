@@ -33,13 +33,15 @@ cp_cache_archives $SYNCED_PKGS_CACHE_DIR $CONDA_DIR/pkgs
 
 # Install conda packages
 conda install --yes --channel sed-pro-inria \
-    gcc \
+    cmake \
     openmpi \
     scalapack \
     metis-gkrand \
     parmetis \
     superlu_dist \
-    mumps
+    mumps \
+    hdf5_cxx \
+    h5utils_cxx
 
 # This set CONDA_ENV_PATH
 source activate root
@@ -51,6 +53,7 @@ test_names="
     parmetis
     superlu_dist
     mumps
+    hdf5
 "
 
 # Run tests, writting results to log file.
